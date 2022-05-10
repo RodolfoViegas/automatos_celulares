@@ -10,14 +10,14 @@ lista_regra = [int(i) for i in regra]
 
 passos = input("digite quantos passos o autômato deve evoluir ")
 passos = int(passos)
+tam_gen = 200
+matriz = np.zeros((passos,tam_gen),dtype=np.int0)
 
-matriz = np.zeros((passos,200),dtype=np.int0)
-
-matriz[0][(200//2) + 1] = 1
+matriz[0][(tam_gen//2) + 1] = 1
 
 
 for i in range(passos -1):
-    for j in range(200):
+    for j in range(tam_gen):
         
         if(matriz[i][j-1] == 1 and matriz[i][j]==1 and matriz[i][(j+1) % len(matriz[i])] == 1):
             matriz[i+1][j] = lista_regra[0]
@@ -50,5 +50,6 @@ for i in range(passos -1):
             matriz[i+1][j] = lista_regra[7]
 
 
-plt.imshow(matriz, cmap='Greys')
+    plt.imshow(matriz, cmap='Greys')
+    plt.pause(0.001)
 plt.show()
